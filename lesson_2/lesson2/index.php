@@ -25,10 +25,10 @@ $text2 = "Присвоить переменной \$d значение в про
 
 $d = random_int(0, 15);
 
-$factorial = function($n) use (&$factorial){
+$func = function($n) use (&$func){
     if ($n == 15) return "15.";
-    echo "$n; <br>";
-    return $factorial($n + 1);
+    echo $n . "<br>";
+    return $func($n + 1);
 };
 
 /*Решение через switch.
@@ -57,29 +57,39 @@ $factorial = function($n) use (&$factorial){
 $text3 = "Реализовать основные 4 арифметические операции в виде функций с двумя параметрами. 
 Обязательно использовать оператор return. В делении проверьте деление на 0 и верните текст ошибки.";
 
-function operation(int $a, $b)
+function sum(int $a, int $b)
 {
     $sum = $a + $b;
-    $dif = $a - $b;
+    return "Сумма равна: " . $sum;
+};
+
+function subtr(int $a, int $b)
+{
+    $substr = $a - $b;
+    return "Разность равна: " . $substr;
+};
+
+function multipl(int $a, int $b)
+{
     $mult = $a * $b;
+    return "Произведение равна: " . $mult;
+};
+
+function div(int $a, int $b)
+{
     if($b === 0){
         $div = 'Делить на ноль нельзя';
     } else {
-        $div = (int) ($a / $b);
+        $div = "Частное равно: " . (int) ($a / $b);
     };
 
-    return (
-        "sum = {$sum};<br>
-         dif = {$dif};<br>
-         mult = {$mult};<br>
-         div = {$div}
-        "
-    );
+    return $div;
 };
 
 // Задание 4
 $text4 = "Реализовать функцию с тремя параметрами: function mathOperation(\$arg1, \$arg2, \$operation), 
 где \$arg1, \$arg2 – значения аргументов, \$operation – строка с названием операции. В зависимости от переданного значения операции выполнить одну из арифметических операций (использовать функции из пункта 3) и вернуть полученное значение (использовать switch).";
+
 $arr = array("*", "/", "+", "-");
 $c = array_rand($arr, 1); 
 
@@ -87,21 +97,13 @@ function mathOperation(int $a, int $b, $c)
 {
     switch ($c) {
         case '+':
-            return $a + $b;
-            break;
+            return sum($a, $b);
         case '*':
-            return $a * $b;
-            break;
+            return  multipl($a, $b);
         case '-':
-            return $a - $b;
-            break;
+            return subtr($a, $b);
         case '/':
-            if($b === 0){
-                return "Делить на ноль нельзя";
-            } else {
-            return (int) ($a / $b);
-            }
-            break;
+            return div($a, $b);
     }
 };
 
@@ -146,16 +148,16 @@ function mathOperation(int $a, int $b, $c)
     <h2>Задание 2</h2>
     <h3><?= $text2 ?></h3>
     <h2>Решение: </h2>
-    <p>$d = <?=  "$d;<br>"?><?=$factorial($d)?>
+    <p>$d = <?=  "$d;<br>"?><?=$func($d)?>
     </p>
     <h2>Задание 3</h2>
     <h3><?= $text3 ?></h3>
     <h2>Решение: </h2>
-    <p><?= "\$a = $a; <br> \$b = $b; <br>" ?> <?= operation($a, $b) ?></p>
+    <p><?= "\$a = $a; <br> \$b = $b; <br>" ?> <?= sum($a, $b) ?></p>
     <h2>Задание 4</h2>
     <h3><?= $text4 ?></h3>
     <h2>Решение: </h2>
-    <p><?= "\$a = $a; <br> \$b = $b; <br> \$c = $arr[$c]; <br> $a $arr[$c] $b = " ?>
+    <p><?= "\$a = $a; <br> \$b = $b; <br> \$c = $arr[$c];<br>" ?>
         <?= mathOperation($a, $b, $arr[$c]) ?>
     </p>
     <h2>Задание 6</h2>
