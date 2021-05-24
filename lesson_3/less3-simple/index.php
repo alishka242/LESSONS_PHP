@@ -3,9 +3,9 @@ echo "<h3>Задание 1.</h3>С помощью цикла while вывест�
 которые делятся на 3 без остатка.<br><b>Решение: </b>";
 $i = 0;
 while ($i <= 100) {
-    if (!($i % 3)){
+    if (!($i % 3)) {
         echo $i;
-        if ($i < 99){
+        if ($i < 99) {
             echo "; ";
         } else {
             echo ".";
@@ -16,15 +16,15 @@ while ($i <= 100) {
 
 echo "<h3>Задание 2.</h3> С помощью цикла do…while написать функцию для вывода чисел 
 от 0 до 10, чтобы результат выглядел так:<br>
-    0 – ноль.<br>
-    1 – нечетное число.<br>
-    2 – четное число.<br>
-    3 – нечетное число.<br>
-    …<br>
-    10 – четное число.<br><br><b>Решение:</b><br>";
-    $i = 0;
+0 – ноль.<br>
+1 – нечетное число.<br>
+2 – четное число.<br>
+3 – нечетное число.<br>
+…<br>
+10 – четное число.<br><br><b>Решение:</b><br>";
+$i = 0;
 do {
-    if($i === 0){
+    if ($i === 0) {
         echo $i . " - ноль.<br>";
     } elseif (!($i % 2)) {
         echo $i . " - четное число.<br>";
@@ -47,7 +47,7 @@ echo "<h3>Задание 3.</h3> Объявить массив, в которо�
 $arr = [
     "Московская область" => [
         "Москва", "Зеленоград", "Клин"
-    ], 
+    ],
     "Ленинградская область" => [
         "Санкт-Петербург", "Всеволожск", "Павловск", "Кронштадт"
     ],
@@ -59,10 +59,8 @@ $arr = [
 foreach ($arr as $keyArr => $valueArr) {
     echo $keyArr . ":<br>";
     foreach ($valueArr as $key => $value) {
-        if ($key < count($valueArr) - 1){
-            echo $value;
-            echo ", ";
-            $key++;
+        if ($key < count($valueArr) - 1) {
+            echo $value . ", ";
         } else {
             echo $value . ".<br>";
         }
@@ -89,12 +87,12 @@ $alfabet = array(
 );
 
 function FunctionName($string, $arr = [])
-{   
+{   //Все что в комментарии - решение преподавателя.
     $engWord = [];
+    //$result = "";
+    for($val = 0; $val < mb_strlen($string); $val++){
 
-    for($val = 0; $val < (strlen($string) / 2); $val++){
-
-        $letter =  (mb_substr($string, $val, 1));
+        $letter =  mb_substr($string, $val, 1);
 
         foreach ($arr as $key => $value) {
             if ($key === $letter){
@@ -103,6 +101,19 @@ function FunctionName($string, $arr = [])
                 $engWord[] = strtoupper($value);
             }
         }
+
+        /*
+        if (isset($alfabet[mb_strtolower($letter)])){
+            if($letter === mb_strtolower($letter)){
+                $latin_letter = $alfabet[$letter];
+            } else {
+                $latin_letter = mb_strtoupper($alfabet[mb_strtolower($letter)]);
+            }
+        } else {
+            $latin_letter = $letter;
+        }
+        $result .= $latin_letter;
+        */
     }
     return implode("", $engWord);
 }   

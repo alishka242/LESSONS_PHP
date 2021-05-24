@@ -6,16 +6,13 @@ function render($page, $params = [])
         'menu' => renderTemplate('menu', $params),
         'content' => renderTemplate($page, $params),
         'footer' => renderTemplate('footer', $params),
-    ]);
 
+    ]);
 }
 
 function renderTemplate($page, $params = [])
 {
-    extract($params); // эта ф-ия делает то же, что и ф-ия foreach ниже
-    // foreach ($params as $key => $value){
-    //     $$key = $value; // $$ - значение ключа 
-    // }
+    extract($params);
 
     ob_start();
     $fileName = TEMPLATES_DIR . $page . ".php";

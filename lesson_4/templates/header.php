@@ -1,1 +1,1 @@
-<p>SHOP</p>
+<p>SHOP SM</p>

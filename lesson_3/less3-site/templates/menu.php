@@ -2,14 +2,56 @@
 
 
 $menu = [
-    "Главная" => [
-        "Приветвие", "Популярные товары", "Связаться с нами"
+    [
+        "title" => "Главная",
+        "href" => "/"   
     ], 
-    "Каталог" => [
-        "Пиццы", "Яблоки", "Чаи"
+    [
+        "title" => "Каталог",
+        "href" => "?page=catalog",
+        "subitems" => [
+            [
+                "title" => "Одежда",
+                "href" => "#",
+                "subitems" => [
+                    [
+                        "title" => "Повседневная",
+                        "href" => "#",
+                    ],
+                    [
+                        "title" => "Пляжная",
+                        "href" => "#",
+                    ]
+                ]
+            ],
+            [
+                "title" => "Обувь",
+                "href" => "#"
+            ],
+            [
+                "title" => "Сад",
+                "href" => "#"
+            ]
+        ] 
     ],
-    "О нас" => [
-        "Кто мы", "История", "Наши сотрудники" 
-    ]
+    [
+        "title" => "О нас",
+        "href" => "?page=about"   
+    ],
 ]; 
-echo renderMenu($menu);
+
+function getMenu($menuArr){
+    $output = "<ul>";
+
+    foreach($menuArr as $item){
+        $output .= "<li><a href=\"{$item["href"]}\">{$item["title"]}</a>";
+        if(isset($item["subitems"])){
+            $output .= getMenu($item["subitems"]);
+        }
+        $output .= "</li>";
+    }
+    $output .= "</ul>";
+    return $output;
+};
+
+echo getMenu($menu);

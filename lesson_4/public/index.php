@@ -1,6 +1,4 @@
 <?php
-include "../config/config.php";
-
 $page = 'index';
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -9,6 +7,8 @@ if (isset($_GET['page'])) {
 $params = [
     'name' => 'Админ'
 ];
+
+include "../config/config.php";
 
 function getMenu($menuArr)
 {
@@ -24,26 +24,6 @@ function getMenu($menuArr)
     $output .= "</ul>";
     return $output;
 };
-
-function getGallery()
-{
-    $titleGal = '<h2>Галерея</h2><div>';
-    $scanPhotoMin = scandir("img/small");
-    $arrPhoto = [];
-    $titleGal = "";
-
-    foreach ($scanPhotoMin as $minPhoto) {
-
-        if ($minPhoto !== '.' && $minPhoto !== '..') {
-            $titleGal .= "<a href='img/big/{$minPhoto}'>
-            <img src='img/small/{$minPhoto}' width='150' height='100'/>
-            </a>";
-            $arrPhoto[] = $titleGal;
-        }
-    }
-    $titleGal .= "</div>";
-    return $titleGal;
-}
 
 include "../templates/params.php";
 

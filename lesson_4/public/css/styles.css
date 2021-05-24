@@ -70,6 +70,23 @@ main {
     padding: 10px;
 }
 
+.photoGallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.photoGallery a {
+    margin: 5px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
 footer {
     height: 40px;
     margin-top: -40px;

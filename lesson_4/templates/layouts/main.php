@@ -7,24 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
 </head>
 
 <body>
-    <div class="wrapper"> 
-    <header class="header">
-        <?= $header ?>
-    </header>
-    <nav>
-        <?= $menu ?>
-    </nav>
-    <main>
-        <?= $content ?>
-    </main>
+    <div class="wrapper">
+        <header class="header">
+            <?= $header ?>
+        </header>
+        <nav>
+            <?= $menu ?>
+        </nav>
+        <main>
+            <?= $content ?>
+        </main>
     </div>
     <footer>
         <?= $footer ?>
     </footer>
-    
 </body>
 
 </html>
