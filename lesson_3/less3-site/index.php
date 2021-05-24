@@ -11,33 +11,6 @@ $params = [
     'name' => 'Админ'
 ];
 
-function renderMenu($menu)
-{
-    foreach ($menu as $keyMenu => $valueMenu) {
-
-        switch ($keyMenu) {
-            case "Главная":
-                $hrefMenu = "";
-                break;
-            case "Каталог":
-                $hrefMenu = "?page=catalog";
-                break;
-            case "О нас":
-                $hrefMenu = "?page=about";
-                break;
-        }
-        
-        echo "<ul style='display: flex;'>
-                <li style=' width: 80px;'><a style='text-decoration: none; color: cadetblue;' href='/$hrefMenu'>$keyMenu</a></li><ul>";
-        foreach ($valueMenu as $key => $value) {
-            echo "
-                <li style='display: inline; border-bottom: 1px solid lightgray; margin-right: 10px; color: gray'>$value</li>
-            ";
-        }
-        echo "</ul></ul>";
-    }
-}
-
 include "templates/params.php";
 
 function getCatalog()
