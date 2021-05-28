@@ -1,14 +1,20 @@
 <h2>Галерея</h2>
 <div class="photoGallery">
     <?php
-    foreach ($gallery as $numbGal => $value) {
-        echo "
-        <div>
-            <a target='_blank' href='img/big/{$value}'>
-            <img src='img/small/{$value}' width='150' height='100'/>
+    foreach ($gallery as $item => $value): ?>
+        
+        <div> 
+            <a href='/image/?id=<?=$value['id']?>'>
+            <img src='img/small/<?=$value['imgName']?>' width='150' height='100'>
             </a>
+            <p>Просмотров: <?=$value['likes']?></p>
         </div>
-        ";
-    }
-    ?>
+    <?endforeach;?>
+</div>
+<div>
+    <h2>Загрузить изображение:</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="img">
+        <input type="submit" value="Загрузить" name="load">
+    </form>
 </div>
