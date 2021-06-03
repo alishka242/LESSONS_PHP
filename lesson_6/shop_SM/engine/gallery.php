@@ -6,7 +6,7 @@ function getGallery()
 }
 
 function plusLike(int $id)
-{
+{   
     return executeQuery("UPDATE images SET likes = likes + 1 WHERE id = {$id}");
 }
 

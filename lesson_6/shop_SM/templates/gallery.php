@@ -2,9 +2,8 @@
 <div class="photoGallery">
     <?php
     foreach ($gallery as $item => $value): ?>
-        
         <div> 
-            <a href='/image/?id=<?=$value['id']?>'>
+            <a href='/image/<?=$value['id']?>'>
             <img src='img/small/<?=$value['name']?>' width='150' height='100'>
             </a>
             <p>Просмотров: <?=$value['likes']?></p>

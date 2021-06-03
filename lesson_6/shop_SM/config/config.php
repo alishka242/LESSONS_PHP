@@ -4,6 +4,7 @@ define('IMG_SMALL', $_SERVER['DOCUMENT_ROOT'] . '/img/small/');
 define('IMG_BIG', $_SERVER['DOCUMENT_ROOT'] . '/img/big/');
 define('TEMPLATES_DIR', ROOT . '/templates/');
 define('LAYOUTS_DIR', 'layouts/');
+define('URL_ARRAY', explode('/', $_SERVER['REQUEST_URI']));
 
 // DB config
 define('HOST','localhost:3306');
@@ -11,9 +12,11 @@ define('USER','root');
 define('PASS','Not.8fat');
 define('DB','shop_SM');
 
-$message = [
-    'OK' => 'Добавлено',
-    
+$messages = [
+    'OK' => 'Сообщение добавлено',
+    'DELETE' => 'Сообщение удалено',
+    'EDIT' => 'Сообщение изменено',
+    'ERROR' => 'Ошибка'
 ];
 
 include ROOT . "/engine/db.php";

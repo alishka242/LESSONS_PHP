@@ -23,6 +23,7 @@ function closeDb(){
 function executeQuery($sql)
 {
     return @mysqli_query(getDb(), $sql) or die(mysqli_error(getDb()));
+    closeDb();
 }
 
 /* Обертка для выполнения запроса на получение данных

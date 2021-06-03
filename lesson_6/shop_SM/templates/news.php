@@ -3,7 +3,7 @@
 <?php foreach ($news as $item):?>
 
 <div>
-    <a href="/newsone/?id=<?=$item['id']?>">
+    <a href="/newsone/<?=$item['id']?>">
         <b><?=$item['title']?></b>
     </a>
 </div>

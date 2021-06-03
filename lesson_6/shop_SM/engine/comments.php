@@ -1,22 +1,70 @@
 <?php
-function getComments()
+function checkReques($str)
+{
+    return strip_tags(htmlspecialchars(mysqli_escape_string(getDb(), $str)));
+}
+
+function getAllComments()
 {
     $sql = 'SELECT * FROM comments ORDER BY createdAt DESC';
     return getAssocResult($sql);
 }
 
-function addComment()
+function getCommentAction($action, $idComment)
 {
-    $db = getDb();
-    $message = '';
+    $params['textBtn'] = 'Добавить';
+    $params['uri_2'] = 'add';
+    $name = checkReques($_POST['name']);
+    $text = checkReques($_POST['text']);
 
-
-    $guestName = strip_tags(htmlspecialchars(mysqli_escape_string($db, $_POST['guestName'])));
-    $textComment = strip_tags(htmlspecialchars(mysqli_escape_string($db, $_POST['textComment'])));
-    $sql = "INSERT INTO comments(guestName, textComment) VALUES ('{$guestName}', '{$textComment}')";
-    executeQuery($sql);
-    header('Location: /comments');
-    if (isset($_GET['message'])) {
-        $message = $message[$_GET['message']];
+    if ($action == 'add') {
+        if($name !== "" || $text !== ""){
+            addComment($name, $text);
+            header("Location: /comments");
+        }
     }
+    if ($action == 'edit') {
+        $params['edit'] = editComment($idComment);
+        $params['textBtn'] = 'Изменить';
+        $params['uri_2'] = "update/$idComment";
+    }
+    if ($action == 'update') {
+        updateComment($name, $text, $idComment);
+        header('Location: /comments');
+    }
+    if ($action == 'delete') {
+        deleteComment($idComment);
+        header('Location: /comments');
+    }
+
+    return $params;
+}
+
+function addComment($name, $text)
+{
+    $sql = "INSERT INTO comments(`name`, `text`) VALUES ('{$name}', '{$text}')";
+    return executeQuery($sql);
+}
+
+function editComment($id)
+{
+    $sql = "SELECT `name`, `text` FROM comments WHERE id = {$id}";
+    return getOneResult($sql);
+}
+
+function updateComment($name, $text, $id)
+{   
+    $sql = "UPDATE comments SET `name` = '{$name}', `text`= '{$text}' WHERE id = {$id}";
+    return executeQuery($sql);
+}
+
+function deleteComment($id)
+{
+    $sql = "DELETE FROM comments WHERE id = {$id}";
+    executeQuery($sql);
+}
+
+
+function getTextBtn()
+{
 }

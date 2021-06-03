@@ -2,7 +2,7 @@
 //Файл с функциями нашего движка
 //CONTROLLER
 
-function prepareVariables($page)
+function prepareVariables($page, $uriLevel_2 = "", $uriLevel_3 = "")
 {
     switch ($page) {
         case "index":
@@ -14,7 +14,7 @@ function prepareVariables($page)
             break;
 
         case "product":
-            $id = (int)$_GET['id'];
+            $id = (int) $uriLevel_2;
             $params['product'] = getProduct($id);
             break;
 
@@ -31,11 +31,11 @@ function prepareVariables($page)
             break;
 
         case "image":
-            if (plusLike($_GET['id'])) {
+            if (plusLike((int) $uriLevel_2)) {
                 $params['message'] = "Такого изображения нет";
             }
 
-            $params['image'] = getPhoto($_GET['id']);
+            $params['image'] = getPhoto((int) $uriLevel_2);
             break;
 
         case "news":
@@ -43,16 +43,12 @@ function prepareVariables($page)
             break;
 
         case "newsone":
-            $id = (int)$_GET['id'];
-            $params['news'] = getOneNews($id);
+            $params['news'] = getOneNews((int) $uriLevel_2);
             break;
 
         case "comments":
-            $params['comments'] = getComments();
-            break;
-
-        case "commentsadd":
-            $params['comments'] = addComment();
+            $params['action'] = getCommentAction($uriLevel_2, $uriLevel_3);
+            $params['comments'] = getAllComments();
             break;
 
         case "apicatalog":

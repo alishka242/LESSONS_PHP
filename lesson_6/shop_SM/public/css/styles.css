@@ -8,7 +8,6 @@ html {
     height: 100%;
 }
 
-
 .wrapper {
     margin: 0 auto;
     max-width: 1145;
@@ -33,11 +32,13 @@ nav {
     height: 60px;
     background-color: rgb(209, 206, 192);
 }
-
 a {
     text-decoration: none;
     color: rgb(36, 36, 36);
     font-size: 16px;
+}
+
+nav a {
     font-weight: bold;
 }
 
@@ -81,7 +82,7 @@ main {
     flex-direction: row;
 }
 
-.catalogPage a {
+.catalogPage div {
     background-color: rgb(221, 216, 200);
     text-align: center;
     margin: 10px;
@@ -163,6 +164,11 @@ main {
     padding: 3px;
     max-width: 450px;
     background-color: rgb(235, 222, 170);
+}
+
+.commentDiv a {
+    font-size: 13px;
+    color: grey;
 }
 
 .formComments {
