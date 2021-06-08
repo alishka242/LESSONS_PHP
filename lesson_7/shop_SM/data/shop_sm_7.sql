@@ -16,6 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `basket`
+--
+
+DROP TABLE IF EXISTS `basket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `basket` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `session_id` text NOT NULL,
+  `count` int NOT NULL DEFAULT '1',
+  `price` decimal(10,0) NOT NULL,
+  UNIQUE KEY `id` (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `basket_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `basket_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `basket`
+--
+
+LOCK TABLES `basket` WRITE;
+/*!40000 ALTER TABLE `basket` DISABLE KEYS */;
+INSERT INTO `basket` VALUES (1,4,1,'3hba769rts7pmsrc8sb70luvunjlnnaj',1,12),(2,4,2,'3hba769rts7pmsrc8sb70luvunjlnnaj',1,24),(3,4,3,'3hba769rts7pmsrc8sb70luvunjlnnaj',1,10);
+/*!40000 ALTER TABLE `basket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `comments`
 --
 
@@ -170,8 +202,36 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Яблоко красное',2,'apple01.png','Яблоки – очень популярный и, пожалуй, наиболее распространенный в нашей стране фрукт. \nРегулярное их употребление помогает поддерживать необходимый уровень витаминов и минералов, важных для человеческого организма. \nВ них содержатся витамины С, В1, В2, Р, Е, каротин, калий, железо, марганец, кальций, пектины, сахара, органические кислоты и другие полезные вещества.',12,'2021-06-03 11:36:43'),(2,'Пиццa c пoмидopaми',4,'pizza01.png','Пиццa c пoмидopaми — пpocтaя и вкуcнaя. В ocнoвe ee клaccичecкиe итaльянcкиe peцeпты. Ингpeдиeнты:пoмидopы, cыp, зeлeнь и oливкoвoe мacлo.',24,'2021-06-03 11:36:43'),(3,'Чай черный с лимоном',3,'tea01.png','Байховый чай (от китайского бай хуа — «белый цветок», название едва распустившихся почек чайного листа, одного из компонентов чая, придающих ему аромат и вкус) — торговое название рассыпного чая, выработанного в виде отдельных чаинок.',10,'2021-06-03 11:36:43');
+INSERT INTO `products` VALUES (1,'Яблоко красное',2,'apple01.png','Яблоки – очень популярный и, пожалуй, наиболее распространенный в нашей стране фрукт. \nРегулярное их употребление помогает поддерживать необходимый уровень витаминов и минералов, важных для человеческого организма. \nВ них содержатся витамины С, В1, В2, Р, Е, каротин, калий, железо, марганец, кальций, пектины, сахара, органические кислоты и другие полезные вещества.',12,'2021-06-08 10:41:39'),(2,'Пиццa c пoмидopaми',4,'pizza01.png','Пиццa c пoмидopaми — пpocтaя и вкуcнaя. В ocнoвe ee клaccичecкиe итaльянcкиe peцeпты. Ингpeдиeнты:пoмидopы, cыp, зeлeнь и oливкoвoe мacлo.',24,'2021-06-08 10:41:39'),(3,'Чай черный с лимоном',3,'tea01.png','Байховый чай (от китайского бай хуа — «белый цветок», название едва распустившихся почек чайного листа, одного из компонентов чая, придающих ему аромат и вкус) — торговое название рассыпного чая, выработанного в виде отдельных чаинок.',10,'2021-06-08 10:41:39');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `login` varchar(255) DEFAULT NULL,
+  `pass` varchar(255) DEFAULT NULL,
+  `session_id` text,
+  `hash` text,
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `login` (`login`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'admin','123',NULL,'qwe567'),(2,'user','321',NULL,''),(3,'user3','123','rdf5hfud8o0mkjtfap1rvek92pem4o8v',''),(4,'user4','123','3hba769rts7pmsrc8sb70luvunjlnnaj','6934865860bf1fdfbf77c3.59403616');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -183,4 +243,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-03 11:42:49
+-- Dump completed on 2021-06-08 10:52:27

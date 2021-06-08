@@ -63,13 +63,35 @@ html {
     align-items: center;
     border: 1px solid black;
     width: 500px;
-
+    height: 200px;
+    justify-content: space-around;
 }
 
 .singIn form {
     display: flex;
     flex-direction: column;
     width: 250px;
+    height: 150px;
+    justify-content: space-around;
+}
+
+
+.reg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    width: 500px;
+    height: 200px;
+    justify-content: space-evenly;
+}
+
+.reg form {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 150px;
+    justify-content: space-around;
 }
 
 nav {

@@ -1,12 +1,13 @@
 <?php
-//Файл с функциями нашего движка
-//CONTROLLER
-
 function prepareVariables($page, $uriLevel_2 = "", $uriLevel_3 = "")
 {
     switch ($page) {
-        case "check_in":
-            
+        case "sing_in":
+            $params['message'] = sing_in();
+            break;
+
+        case "registration":
+            $params['message'] = reg();
             break;
 
         case "logout":

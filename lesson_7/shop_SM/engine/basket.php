@@ -9,11 +9,10 @@ function addProduct(int $productId)
     if ($productInBasket) {
         $symb = '+';
         countDownOrUp($productId, $symb, $session, $userId);
-        //executeQuery("UPDATE basket SET `count` = `count` + 1 WHERE `product_id` = '{$productId}' AND (`session_id` = '{$session}' OR `user_id` = '{$userId}')");
     } else {
         $productPrice = getOneResult("SELECT price FROM products WHERE `id` = {$productId}")['price'];
-
-        executeQuery("INSERT INTO basket (`session_id`, `product_id`, price, `user_id`) VALUES ('{$session}','{$productId}', '{$productPrice}', '{$userId}')");
+        $sql = "INSERT INTO basket (`session_id`, `product_id`, price) VALUES ('{$session}','{$productId}', '{$productPrice}')";
+        executeQuery($sql);
     }
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     die();

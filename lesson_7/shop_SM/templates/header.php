@@ -6,7 +6,7 @@
     </div>
 <?php else : ?>
     <div class="singInOrReg">
-        <a href="/check_in">Войти</a> 
+        <a href="/sing_in">Войти</a> 
         <a href="/registration">Зарегистрироваться</a>
     </div>
 <?php endif; ?>
