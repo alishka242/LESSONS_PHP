@@ -14,6 +14,10 @@ function prepareVariables($page, $uriLevel_2 = "", $uriLevel_3 = "")
             logout();
             break;
 
+        case "admin":
+            $params['orders'] = getOrders();
+            break;
+
         case "catalog":
             $params['catalog'] = getCatalog();
             break;

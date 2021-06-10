@@ -1,6 +1,6 @@
 <?php
 function render($page, $params)
-{
+{   
     return renderTemplate(LAYOUTS_DIR . 'main', [
         'header' => renderTemplate('header', $params),
         'menu' => renderTemplate('menu', $params),
@@ -28,12 +28,13 @@ function renderTemplate($page, $params)
 
 function renderMenu($menuArr)
 {
-    // $user = is_auth();
-    // if ($user == "admin") {
-    //     $menuArr = array_push(["title" => "Админка", "href" => "/admin"]);
-    // } else {
-    //     unset($menuArr[["title" => "Админка", "href" => "/admin"]]);
-    // }
+    $user = (is_auth());
+    if ($user == 'admin'){
+        $menuArr[8] = ["title" => "Админка", "href" => "/admin"];
+    } else {
+        unset($menuArr[8]);
+    }
+
     $output = "<ul>";
 
     foreach ($menuArr as $item) {

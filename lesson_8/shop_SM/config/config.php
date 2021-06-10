@@ -25,6 +25,7 @@ include ROOT . "/engine/db.php";
 include ROOT . "/engine/controller.php";
 include ROOT . "/engine/render.php"; 
 include ROOT . "/engine/auth.php"; 
+include ROOT . "/engine/adminPage.php";
 include ROOT . "/engine/news.php"; 
 include ROOT . "/engine/catalog.php"; 
 include ROOT . "/engine/product.php"; 

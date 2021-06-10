@@ -34,7 +34,7 @@ CREATE TABLE `basket` (
   KEY `product_id` (`product_id`),
   CONSTRAINT `basket_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `basket_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `basket` (
 
 LOCK TABLES `basket` WRITE;
 /*!40000 ALTER TABLE `basket` DISABLE KEYS */;
-INSERT INTO `basket` VALUES (1,4,1,'3hba769rts7pmsrc8sb70luvunjlnnaj',1,12),(2,4,2,'3hba769rts7pmsrc8sb70luvunjlnnaj',1,24),(3,4,3,'3hba769rts7pmsrc8sb70luvunjlnnaj',1,10);
+INSERT INTO `basket` VALUES (1,NULL,1,'e9lmcv14b5oe6r85lans1rj6emkmadhv',1,12),(2,NULL,2,'e9lmcv14b5oe6r85lans1rj6emkmadhv',1,24),(3,NULL,3,'e9lmcv14b5oe6r85lans1rj6emkmadhv',1,10),(4,NULL,1,'fl32j9v232ifb4n2f3am04jh0lo6m760',1,12),(5,NULL,1,'5ipir36609p6rl6p06b6qmefggei0lk9',1,12),(6,NULL,2,'5ipir36609p6rl6p06b6qmefggei0lk9',1,24),(7,NULL,3,'5ipir36609p6rl6p06b6qmefggei0lk9',1,10);
 /*!40000 ALTER TABLE `basket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,6 +152,37 @@ INSERT INTO `newscategories` VALUES (1,'спорт'),(2,'наука'),(3,'общ
 UNLOCK TABLES;
 
 --
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(145) NOT NULL,
+  `phone` int NOT NULL,
+  `session_id` text NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('новый','собран','отправлен','доставлен') DEFAULT 'новый',
+  UNIQUE KEY `id` (`id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'Алина',13,'e9lmcv14b5oe6r85lans1rj6emkmadhv',1,'2021-06-09 10:09:22','новый'),(2,'Алина',13,'e9lmcv14b5oe6r85lans1rj6emkmadhv',2,'2021-06-09 10:09:22','новый'),(3,'Алина',13,'e9lmcv14b5oe6r85lans1rj6emkmadhv',3,'2021-06-09 10:09:22','новый'),(4,'admin',123,'fl32j9v232ifb4n2f3am04jh0lo6m760',1,'2021-06-09 10:45:17','новый'),(5,'Христя',654989,'5ipir36609p6rl6p06b6qmefggei0lk9',1,'2021-06-09 11:10:57','новый'),(6,'Христя',654989,'5ipir36609p6rl6p06b6qmefggei0lk9',2,'2021-06-09 11:10:57','новый'),(7,'Христя',654989,'5ipir36609p6rl6p06b6qmefggei0lk9',3,'2021-06-09 11:10:57','новый');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product_categories`
 --
 
@@ -202,7 +233,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Яблоко красное',2,'apple01.png','Яблоки – очень популярный и, пожалуй, наиболее распространенный в нашей стране фрукт. \nРегулярное их употребление помогает поддерживать необходимый уровень витаминов и минералов, важных для человеческого организма. \nВ них содержатся витамины С, В1, В2, Р, Е, каротин, калий, железо, марганец, кальций, пектины, сахара, органические кислоты и другие полезные вещества.',12,'2021-06-08 10:41:39'),(2,'Пиццa c пoмидopaми',4,'pizza01.png','Пиццa c пoмидopaми — пpocтaя и вкуcнaя. В ocнoвe ee клaccичecкиe итaльянcкиe peцeпты. Ингpeдиeнты:пoмидopы, cыp, зeлeнь и oливкoвoe мacлo.',24,'2021-06-08 10:41:39'),(3,'Чай черный с лимоном',3,'tea01.png','Байховый чай (от китайского бай хуа — «белый цветок», название едва распустившихся почек чайного листа, одного из компонентов чая, придающих ему аромат и вкус) — торговое название рассыпного чая, выработанного в виде отдельных чаинок.',10,'2021-06-08 10:41:39');
+INSERT INTO `products` VALUES (1,'Яблоко красное',2,'apple01.png','Яблоки – очень популярный и, пожалуй, наиболее распространенный в нашей стране фрукт. \nРегулярное их употребление помогает поддерживать необходимый уровень витаминов и минералов, важных для человеческого организма. \nВ них содержатся витамины С, В1, В2, Р, Е, каротин, калий, железо, марганец, кальций, пектины, сахара, органические кислоты и другие полезные вещества.',12,'2021-06-08 15:58:16'),(2,'Пиццa c пoмидopaми',4,'pizza01.png','Пиццa c пoмидopaми — пpocтaя и вкуcнaя. В ocнoвe ee клaccичecкиe итaльянcкиe peцeпты. Ингpeдиeнты:пoмидopы, cыp, зeлeнь и oливкoвoe мacлo.',24,'2021-06-08 15:58:16'),(3,'Чай черный с лимоном',3,'tea01.png','Байховый чай (от китайского бай хуа — «белый цветок», название едва распустившихся почек чайного листа, одного из компонентов чая, придающих ему аромат и вкус) — торговое название рассыпного чая, выработанного в виде отдельных чаинок.',10,'2021-06-08 15:58:16');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +252,7 @@ CREATE TABLE `users` (
   `hash` text,
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +261,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','123',NULL,'qwe567'),(2,'user','321',NULL,''),(3,'user3','123','rdf5hfud8o0mkjtfap1rvek92pem4o8v',''),(4,'user4','123','3hba769rts7pmsrc8sb70luvunjlnnaj','6934865860bf1fdfbf77c3.59403616');
+INSERT INTO `users` VALUES (1,'admin','123',NULL,'qwe567'),(2,'user','321',NULL,'');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -243,4 +274,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-08 10:52:27
+-- Dump completed on 2021-06-10 14:50:18

@@ -310,6 +310,25 @@ main {
     margin-top: 5px;
 }
 
+.ordersAdmin{
+background-color: rgb(235, 227, 207);
+padding: 15px;
+}
+
+.orderInfoAdmin{
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid rgb(168, 168, 168);
+}
+
+.orderStatus{
+    background-color: greenyellow;
+}
+
+.orderSess{
+    background-color: indianred;
+}
+
 footer {
     height: 40px;
     margin-top: -40px;
